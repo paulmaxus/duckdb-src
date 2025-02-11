@@ -12,7 +12,7 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Expose port 5000 for Flask
-EXPOSE 80
+EXPOSE 5000
 
 # Run Flask using Gunicorn with 1 worker (single process) and multiple threads
-CMD ["gunicorn", "-w", "1", "--threads", "4", "-b", "0.0.0.0:80", "app:app"]
+CMD ["gunicorn", "-w", "1", "--threads", "4", "-b", "0.0.0.0:5000", "app:app"]
