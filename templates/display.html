@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View and Edit Table</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+<h1>View and Edit Table</h1>
+<div x-data="{table: []}" x-init="table = await({{ table }})">
+  <div x-data="{study: ''}">
+    <select x-model="study">
+      <template x-for="row in table">
+          <option x-text="row['study']"></option>
+      </template>
+    </select>
+    <div class="p-4">
+      <table>
+        <thead>
+          <tr>
+            <th>study</th>
+            <th>text</th>
+          </tr>
+        </thead>
+        <tbody>
+          <template x-if="study !== ''">
+            <template x-for="row in table.filter(row => row.study === study)">
+              <tr>
+                <td x-text="row.study"></td>
+                <td x-text="row.text"></td>
+              </tr>
+            </template>
+          </template>
+        </tbody>
+      </table>
+    </div>
+</div>
+</div>
+</body>
+</html>
